@@ -1,0 +1,11 @@
+{
+  "name": "my-ai-share",
+  "version": "1.0.0",
+  "description": "一些AI方面的探索",
+  "scripts": {
+    "dev": ""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT"
+}
