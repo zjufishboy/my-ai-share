@@ -15,17 +15,18 @@ export class ConsoleLoading {
   private tick = 0;
   private ticker: any;
   private printLoading = () => {
-    const init = [..."......"];
+    const init = [..."............"];
     init[this.tick] = "*";
+    // console.log(init.join(""));
     process.stdout.write("\r" + init.join(""));
   };
 
   start() {
     this.printLoading();
     this.ticker = globalThis.setInterval(() => {
-      this.tick = (this.tick + 1) % 6;
+      this.tick = (this.tick + 1) % 12;
       this.printLoading();
-    }, 1000);
+    }, 200);
   }
 
   stop() {
@@ -39,4 +40,14 @@ export const getEnvValue = (key: string): string => {
     throw new Error("环境参数缺失：" + key);
   }
   return process.env[key];
+};
+
+export const safeJsonParse = (jsonStr: string) => {
+  let result = {};
+  try {
+    result = JSON.parse(jsonStr);
+  } catch (e) {
+    result = {};
+  }
+  return result;
 };

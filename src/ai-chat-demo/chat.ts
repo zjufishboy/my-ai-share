@@ -1,5 +1,6 @@
 import { ChatLooper } from "./chat-loop";
 import { Chatter } from "./chatter";
+import { apiUrl } from "./constants";
 import { ConsoleLoading, getEnvValue, wrapPromise } from "./utils";
 
 const consoleLoading = new ConsoleLoading();
@@ -8,13 +9,12 @@ export const startChat = () => {
   const looper = new ChatLooper();
   const chatter = new Chatter({
     apiKey: getEnvValue("ALI_API_KEY"),
-    baseURL: "https://dashscope.aliyuncs.com/compatible-mode/v1",
+    baseURL: apiUrl.ALIYUN,
   });
   const systemPrompt =
     // 自定义Prompt
     "你是一个日语大师，请分析我接下来每一句中文并翻译成日语，要求附带罗马音说明和语法解析";
-  chatter.startNewChat(systemPrompt);
-  console.log(systemPrompt);
+  chatter.startNewChat({ systemPrompt });
 
   looper.subscribe(async (userInput) => {
     if (userInput === "end") {

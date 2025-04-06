@@ -3,18 +3,25 @@
   "version": "1.0.0",
   "description": "一些AI方面的探索",
   "scripts": {
-    "dev": "ts-node ./src/ai-chat-demo"
+    "dev": "ts-node ./src/ai-chat-demo",
+    "dev-server": "ts-node ./src/mcp-server",
+    "dev-client": "ts-node ./src/mcp-client"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.8.0",
     "dotenv": "^16.4.7",
     "lodash": "^4.17.21",
-    "openai": "^4.91.1"
+    "openai": "^4.91.1",
+    "zod": "^3.24.2"
   },
   "devDependencies": {
-    "@types/lodash": "^4.17.16"
+    "@types/lodash": "^4.17.16",
+    "@types/node": "^22.14.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
   },
   "engines": {
     "node": "20.5.1",
