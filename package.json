@@ -3,9 +3,21 @@
   "version": "1.0.0",
   "description": "一些AI方面的探索",
   "scripts": {
-    "dev": ""
+    "dev": "ts-node ./src/ai-chat-demo"
   },
   "keywords": [],
   "author": "",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "lodash": "^4.17.21",
+    "openai": "^4.91.1"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.17.16"
+  },
+  "engines": {
+    "node": "20.5.1",
+    "pnpm": "8.7.1"
+  }
 }
