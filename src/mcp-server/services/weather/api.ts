@@ -8,28 +8,6 @@ type AmapRes<E> = E & {
   infocode: string;
 };
 
-//   {
-//     "status": "1",
-//     "count": "1",
-//     "info": "OK",
-//     "infocode": "10000",
-//     "lives": [
-//       {
-//         "province": "浙江",
-//         "city": "西湖区",
-//         "adcode": "330106",
-//         "weather": "晴",
-//         "temperature": "19",
-//         "winddirection": "南",
-//         "windpower": "≤3",
-//         "humidity": "44",
-//         "reporttime": "2025-04-06 22:32:21",
-//         "temperature_float": "19.0",
-//         "humidity_float": "44.0"
-//       }
-//     ]
-//   }
-
 type WeatherRes = AmapRes<{
   count: number;
   lives: Array<{

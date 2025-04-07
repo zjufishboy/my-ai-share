@@ -6,27 +6,18 @@ import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js"
 import path from "node:path";
 import { apiUrl, modelName } from "../ai-chat-demo/constants";
 import { stdout } from "node:process";
+import { SuperClient } from "./super-client";
+import { serverConfig } from "./config";
 
 const consoleLoading = new ConsoleLoading();
 
 export const startChat = async () => {
   // 初始化mcpClient
-  const mcpClient = new Client({ name: "mcp-client-cli", version: "1.0.0" });
+  const mcpClient = new SuperClient();
 
-  const transport = new StdioClientTransport({
-    command: "ts-node",
-    args: [path.resolve(__dirname, "../mcp-server")],
-  });
-
-  mcpClient.connect(transport);
+  mcpClient.connect(serverConfig);
 
   const toolsResult = await mcpClient.listTools();
-  // 这个格式是 anthropic 的格式，但我们要用更open的openai库
-  //   const tools = toolsResult.tools.map((tool) => ({
-  //     name: tool.name,
-  //     description: tool.description,
-  //     inputSchema: tool.inputSchema,
-  //   }));
 
   // 说实话 anthropic 自己的格式有点夹带私货了,但改改也能通
   const tools: MyTool[] = toolsResult.tools.map((tool) => ({
@@ -48,7 +39,10 @@ export const startChat = async () => {
     };
   }, {});
 
-  console.log("目前可用的工具列表：", "\n" + tools.map(({ function: { name } }) => "- " + name).join("\n"));
+  console.log(
+    "目前可用的工具列表：",
+    "\n" + tools.map(({ function: { name, description } }) => `- ${name} (${description})`).join("\n")
+  );
 
   const chatter = new Chatter({
     // 阿里云官网的deepseek模型不支持函数调用
@@ -83,7 +77,8 @@ export const startChat = async () => {
       },
     });
 
-    console.dir(message, { depth: 10 });
+    // console.dir(message, { depth: 10 });
+    console.log(message.content);
     console.log("====================================");
   });
 

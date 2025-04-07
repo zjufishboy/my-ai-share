@@ -27,9 +27,9 @@ export const registerTool = (server: McpServer, tools: ToolInstance[]) => {
   });
 };
 
-export const toolGetTodayWeather: ToolInstance = {
-  name: "get-today-weather",
-  description: "Get weather of today",
+export const toolGetWeather: ToolInstance = {
+  name: "get-weather",
+  description: "获取特定日期的天气信息",
   schema: schemaGetWeather,
   cb: async ({ date }) => {
     const res = await apiGetWeather({ date });

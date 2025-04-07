@@ -31,6 +31,7 @@ export class ConsoleLoading {
 
   stop() {
     this.ticker && clearInterval(this.ticker);
+    // console.log("");
     process.stdout.write("\r");
   }
 }

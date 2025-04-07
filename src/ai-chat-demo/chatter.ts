@@ -109,8 +109,9 @@ export class Chatter {
             content: [{ type: "text", text: `无法调用名为${toolName}的工具，对应的工具处理器不存在` }],
           };
         } else {
+          // console.log("调用工具", toolName);
           result = await handler(toolArgs);
-          //   console.log("工具处理结果", toolName, toolArgs, result);
+          // console.log("工具处理结果", toolName, toolArgs, result);
         }
 
         const resultContent = result?.content?.[0]?.text ?? `调用名为${toolName}的工具，未返回结果`;
